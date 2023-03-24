@@ -1,0 +1,54 @@
+{
+  "plumbers": [ 
+  { "id": 1, "name": "Maude"},
+  { "id": 2, "name": "Merle"}
+],
+  "completions": [ {
+    "requestId": 1,
+    "plumberId": 1,
+    "date_created": "2023-03-24T19:25:53.238Z",
+    "id": 4
+  },
+  {
+    "requestId": 3,
+    "plumberId": 1,
+    "date_created": "2023-03-24T19:27:45.561Z",
+    "id": 5
+  },
+  {
+    "requestId": 2,
+    "plumberId": 1,
+    "date_created": "2023-03-24T19:28:35.442Z",
+    "id": 6
+  },
+  {
+    "requestId": 3,
+    "plumberId": 1,
+    "date_created": "2023-03-24T19:34:41.041Z",
+    "id": 7
+  }],
+  "requests": [
+    {
+      "id": 1,
+      "description": "Aut sint voluptatem fugit eius quas molestiae modi.",
+      "address": "34445 Bianka Ports",
+      "budget": 400,
+      "neededBy": "2021-08-27"
+    },
+    {
+      "description": "My sink exploded again",
+      "address": "123 There",
+      "budget": "38.00",
+      "neededBy": "2023-03-24",
+      "id": 2
+    },
+    {
+      "description": "My cat won't stop peeing",
+      "address": "305 Catavenue",
+      "budget": "4000.00",
+      "neededBy": "2023-04-07",
+      "id": 3
+    }
+   
+  ]
+}

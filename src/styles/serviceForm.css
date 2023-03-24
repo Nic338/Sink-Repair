@@ -1,0 +1,21 @@
+.field{
+  display: flex;
+  flex-direction: column;
+  padding: .5em;
+}
+.label{
+  font-family: "Comfortaa", Arial, sans-serif;
+	font-size: 18px;
+}
+#submitRequest{
+	background-color: #ec1c24;
+    color: #ffffff;
+    font-size: 18px bold;
+    padding: .5em;
+}
+.serviceForm {
+  padding: .5em;
+}
+h1{
+  margin-left: 2em;
+}
