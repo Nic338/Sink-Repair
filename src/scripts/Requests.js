@@ -38,9 +38,11 @@ mainContainer.addEventListener(
         }
     }
     )
-    const plumbers = getPlumbers()
     export const Requests = () => {
+        const plumbers = getPlumbers()
+        // console.log(plumbers)
         const requests = getRequests()
+        // console.log(requests)
         const convertRequestsToList = (request) => {
             return `
             <li>
