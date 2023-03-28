@@ -1,7 +1,6 @@
-import { getRequests, deleteRequest, fetchPlumbers, saveCompletion, fetchCompletions, getPlumbers } from "./dataAccess.js"
+import { getRequests, deleteRequest, fetchPlumbers, saveCompletion, fetchCompletions, getPlumbers, getCompletions } from "./dataAccess.js"
 
 const mainContainer = document.querySelector("#container")
-const completions = fetchCompletions()
 
 mainContainer.addEventListener("click", click => {
     if (click.target.id.startsWith("request--")) {
@@ -26,6 +25,7 @@ mainContainer.addEventListener(
            const completion = {
             requestId: parseInt(requestId),
             plumberId: parseInt(plumberId),
+            workComplete: true,
             date_created: new Date().toISOString()
             }
            saveCompletion(completion)
@@ -43,30 +43,37 @@ mainContainer.addEventListener(
         // console.log(plumbers)
         const requests = getRequests()
         // console.log(requests)
+        const completions = getCompletions()
         const convertRequestsToList = (request) => {
-            return `
-            <li>
-            ${request.description}
-            <select class="plumbers" id="plumbers">
-            <option value="">Choose</option>
-            ${
-                plumbers.map(
-                    plumber => {
-                        return `<option value="${request.id}--${plumber.id}">${plumber.name}</option>`
-            }
-        ).join("")
-    }
-</select>
-        <button class="request__delete"
-                id="request--${request.id}">
-            Delete
-        </button>
-    </li>`
-    
+           if(!completions.find(singleCompletion => singleCompletion.requestId === request.id)){
+               return `<li>
+               ${request.description}
+               <select class="plumbers" id="plumbers">
+               <option value="">Choose</option>
+               ${plumbers.map(plumber => {
+                           return `<option value="${request.id}--${plumber.id}">${plumber.name}</option>`
+                        }
+                        ).join("")
+                    }
+                    </select>
+                    <button class="request__delete" id="request--${request.id}">
+                    Delete
+                    </button>
+                    </li>`
+                }
+                else {
+                    return `
+                    <li class="finished"> ${request.description}
+                    <button class="request__delete" id="request--${request.id}">
+                    Delete
+                    </button>
+                    </li>
+                    `
+                }
 
 }
     let html = `
-        <ul>
+        <ul class="requests_list">
             ${
                 requests.map(convertRequestsToList).join("")
             }

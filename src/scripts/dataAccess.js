@@ -5,10 +5,10 @@ const applicationState = {
 }
 const mainContainer = document.querySelector("#container")
 
-const API = "http://localhost:8088"
+const API = "https://sink-repair-api-nic-b2x4b.ondigitalocean.app/"
 
 export const fetchRequests = () => {
-    return fetch(`${API}/requests`)
+    return fetch("https://sink-repair-api-nic-b2x4b.ondigitalocean.app/requests")
     .then(response => response.json())
     .then(
         (serviceRequests) => {
@@ -34,7 +34,7 @@ export const fetchRequests = () => {
     }
 
 
-    return fetch(`${API}/requests`, fetchOptions)
+    return fetch("https://sink-repair-api-nic-b2x4b.ondigitalocean.app/requests", fetchOptions)
     .then(response => response.json())
     .then(() => {
         mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
@@ -43,7 +43,7 @@ export const fetchRequests = () => {
 
 
 export const fetchPlumbers = () => {
-    return fetch(`${API}/plumbers`)
+    return fetch("https://sink-repair-api-nic-b2x4b.ondigitalocean.app/plumbers")
     .then(response => response.json())
     .then(
         (data) => {
@@ -57,7 +57,7 @@ export const fetchPlumbers = () => {
     }
     
     export const deleteRequest = (id) => {
-        return fetch(`${API}/requests/${id}`, { method: "DELETE" })
+        return fetch(`https://sink-repair-api-nic-b2x4b.ondigitalocean.app/requests/${id}`, { method: "DELETE" })
             .then(
                 () => {
                     mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
@@ -73,7 +73,7 @@ export const fetchPlumbers = () => {
             },
             body: JSON.stringify(serviceCompletion)
         }
-    return fetch(`${API}/completions`, fetchOptions)
+    return fetch("https://sink-repair-api-nic-b2x4b.ondigitalocean.app/completions", fetchOptions)
     .then(response => response.json())
     .then(() => {
         mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
@@ -83,7 +83,7 @@ export const fetchPlumbers = () => {
 
 
 export const fetchCompletions = () => {
-    return fetch(`${API}/completions`)
+    return fetch("https://sink-repair-api-nic-b2x4b.ondigitalocean.app/completions")
     .then(response => response.json())
     .then(
         (data) => {
@@ -93,5 +93,10 @@ export const fetchCompletions = () => {
 }
 
 export const getCompletions = () => {
-    return applicationState.completions.map(completion => ({...completion}))
+    let jumbledRequests = applicationState.completions.map(request => ({...request}))
+    let sortedRequests = jumbledRequests.sort((a , b) =>
+    a.workComplete - b.workComplete
+    )
+    return sortedRequests
+
 }

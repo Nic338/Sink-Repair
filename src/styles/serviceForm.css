@@ -19,3 +19,15 @@
 h1{
   margin-left: 2em;
 }
+.requests_list{
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-evenly;
+  margin: 1;
+  padding-left: 3em;
+  padding-right: 3em;
+  width: 80%;
+}
+.finished{
+  background-color: #d84d5286;
+}
